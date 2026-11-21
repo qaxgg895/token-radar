@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar — pre-token protocols ranked by implied value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="dot" aria-hidden="true"></span><h1>TOKEN RADAR</h1></div>
+  <p class="tag">Every protocol DefiLlama tracks, ranked by what its token would be worth if it launched today — and how to farm it first.</p>
+  <div class="stats" id="stats" aria-label="Snapshot statistics"></div>
+</header>
+
+<section class="model" id="model" aria-label="How the radar scores">
+  <h2>How the radar scores</h2>
+  <p class="formula">implied value = TVL × category multiple × growth × maturity</p>
+  <p class="model-note">The category multiple is fitted from this snapshot itself: the median market-cap / TVL of the live-token protocols in the same category. No protocol name is ever special-cased. Launch odds are shown beside the value and never enter it.</p>
+  <p class="mults-cap">Category multiples, fitted from live tokens in this snapshot:</p>
+  <div class="mults" id="mults"></div>
+</section>
+
+<nav class="controls" aria-label="Board controls">
+  <input id="q" type="search" placeholder="Search name or slug…" aria-label="Search protocols">
+  <select id="cat" aria-label="Filter by category"><option value="">All categories</option></select>
+  <select id="chain" aria-label="Filter by chain"><option value="">All chains</option></select>
+  <select id="scope" aria-label="Board scope">
+    <option value="all">Whole board</option>
+    <option value="watchlist">Watchlist only</option>
+    <option value="early">Early finds only</option>
+  </select>
+  <select id="sort" aria-label="Sort board">
+    <option value="rank">Sort: implied value</option>
+    <option value="tvl">Sort: TVL</option>
+    <option value="growth">Sort: 7-day growth</option>
+    <option value="age">Sort: age</option>
+    <option value="odds">Sort: launch odds</option>
+  </select>
+  <div class="tabs" role="tablist">
+    <button id="tab-board" role="tab" aria-selected="true">Board</button>
+    <button id="tab-live" role="tab" aria-selected="false">Live tokens</button>
+  </div>
+</nav>
+
+<main>
+  <p class="count" id="count"></p>
+  <div class="tablewrap">
+    <table id="board">
+      <thead><tr>
+        <th data-k="rank">#</th><th data-k="name">Protocol</th><th data-k="cat">Category</th>
+        <th data-k="chain">Chain</th><th data-k="tvl" class="num">TVL</th><th data-k="chg" class="num">7d</th>
+        <th data-k="age" class="num">Age</th><th data-k="val" class="num">Implied value</th><th data-k="odds" class="num">Launch odds</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <table id="live" hidden>
+      <thead><tr>
+        <th>Protocol</th><th>Category</th><th>Chain</th>
+        <th class="num">TVL</th><th class="num">Market cap</th><th class="num">MCap / TVL</th><th class="num">7d</th>
+      </tr></thead>
+      <tbody id="live-rows"></tbody>
+    </table>
+  </div>
+  <p class="note" id="board-note"></p>
+</main>
+
+<aside id="detail" class="detail" hidden aria-label="Protocol detail"></aside>
+
+<footer>
+  <p>Data: DefiLlama protocols snapshot, sealed 2026-11-14. “Records no token” means DefiLlama records no token for the protocol — it is not proof the protocol has none. Implied values are this entry's own claim, never a prediction that a token will be issued or what it will trade at. Farm plans are a starting point: check the protocol's own pages before you move funds.</p>
+  <p>Model radar-2 · <span id="foot-meta"></span></p>
+</footer>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
